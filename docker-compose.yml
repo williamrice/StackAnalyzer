@@ -1,4 +1,13 @@
 services:
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.40.0-jammy
+    ports:
+      - "3000:3000"
+    command:
+      ["npx", "playwright", "run-server", "--port", "3000", "--host", "0.0.0.0"]
+    networks:
+      - app-network
+
   ollama:
     image: ollama/ollama:latest
     ports:

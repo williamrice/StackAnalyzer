@@ -5,9 +5,18 @@ services:
       - "5000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - OllamaUrl=http://ollama:11434
+      - Ollama__Url=http://ollama:11434
+      - PlaywrightUrl=http://playwright:3000
     depends_on:
       - ollama
+      - playwright
+    networks:
+      - app-network
+
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.40.0-jammy
+    command:
+      ["npx", "playwright", "run-server", "--port", "3000", "--host", "0.0.0.0"]
     networks:
       - app-network
 

@@ -4,7 +4,7 @@ EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY ["*.csproj", "./"]
+COPY ["StackAnalyzer.csproj", "./"]
 RUN dotnet restore
 COPY . .
 RUN dotnet build -c Release -o /app/build
